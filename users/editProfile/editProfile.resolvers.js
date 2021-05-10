@@ -1,7 +1,7 @@
-import client from "../../client";
-
 export default {
   Mutation: {
-    editProfile: () => console.log("hi"),
+    editProfile: (_, { username, firstName, lastName, email, password }) => {
+      console.log(username, firstName, lastName, email, password);
+    },
   },
 };

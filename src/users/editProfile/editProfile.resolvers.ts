@@ -1,8 +1,9 @@
 import client from "../../client";
-import bcrypt from "bcrypt";
+import * as bcrypt from 'bcrypt';
 import { protectedResolver } from "../users.utils";
+import { Resolver, Resolvers } from "../../type";
 
-const resolverFn = async (
+const resolverFn:Resolver = async (
   _,
   { firstName, lastName, username, email, password: newPassword },
   { loggedInUser }
@@ -35,8 +36,10 @@ const resolverFn = async (
   }
 };
 
-export default {
+const resolvers:Resolvers = {
   Mutation: {
     editProfile: protectedResolver(resolverFn),
   },
 };
+
+export default resolvers

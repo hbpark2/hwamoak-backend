@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon --exec babel-node server",
+    "dev": "nodemon --exec ts-node src/server --ext ts,js",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio"
   },
@@ -20,12 +20,15 @@
   "homepage": "https://github.com/hbpark2/instaclone-backend#readme",
   "dependencies": {
     "@prisma/client": "^2.22.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^8.5.1",
     "apollo-server": "^2.24.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^9.0.0",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.4",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "tslint-config-prettier": "^1.18.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",

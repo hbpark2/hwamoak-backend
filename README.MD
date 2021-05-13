@@ -11,6 +11,6 @@ Instaclone Backend,
 -[ x ] Change Avatar(ImageUpload)  
 -[ x ] Follow User  
 -[ x ] UnFollow User  
--[ ] See Followers and See Following w/ Pagination  
+-[ x ] See Followers and See Following w/ Pagination  
 -[ ] Computed Fields  
 -[ ] Search User

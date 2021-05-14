@@ -33,15 +33,6 @@ export default {
         return false;
       }
 
-      //   const exists = await client.user
-      //     .findUnique({ where: { username: loggedInUser.username } })
-      //     .following({
-      //       where: {
-      //         id,
-      //       },
-      //     });
-      //   return exists.length !== 0;
-
       const exists = await client.user.count({
         where: {
           username: loggedInUser.username,
@@ -54,5 +45,11 @@ export default {
       });
       return Boolean(exists);
     },
+    photos: ({ id }, { lastId }) =>
+      client.user.findUnique({ where: { id } }).photos({
+        take: 5,
+        skip: lastId ? 1 : 0,
+        ...(lastId && { cursor: { id: lastId } }),
+      }),
   },
 };

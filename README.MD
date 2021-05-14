@@ -23,7 +23,16 @@ Instaclone Backend,
 - [ x ] Search Photos
 - [ x ] Edit Photo
 - [ x ] Like / Unlike Photo
-- [ ] See Photo Likes User
-- [ ] See Feed
+- [ x ] See Photo Likes User
+- [ ] See Photo Comments
+- [ x ] See Feed
 
 ## Comments
+
+- [ ] Comment on Photo
+- [ ] Edit Comment
+- [ ] Delete Comment
+
+## Extras
+
+- [ ] S3 Image Upload

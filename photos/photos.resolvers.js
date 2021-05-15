@@ -14,6 +14,7 @@ export default {
         },
       }),
     likes: ({ id }) => client.like.count({ where: { photoId: id } }),
+    comments: ({ id }) => client.comment.count({ where: { photoId: id } }),
   },
   Hashtag: {
     photos: ({ id }, { lastId }) => {
@@ -24,7 +25,7 @@ export default {
           },
         },
         // take: 5,
-        // ...(page && { skip: (page - 1) * 5 }),
+        // skip: (page - 1) * 5,
         take: 5,
         skip: lastId ? 1 : 0,
         ...(lastId && { cursor: { id: lastId } }),

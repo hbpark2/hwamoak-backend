@@ -19,6 +19,16 @@ export default {
           error: "Not Authorized",
         };
       } else {
+        await client.comment.deleteMany({
+          where: {
+            photoId: id,
+          },
+        });
+        await client.like.deleteMany({
+          where: {
+            photoId: id,
+          },
+        });
         await client.photo.delete({ where: { id } });
       }
       return {

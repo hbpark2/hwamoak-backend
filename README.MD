@@ -31,9 +31,13 @@ Instaclone Backend,
 ## Comments
 
 - [ x ] Comment on Photo
-- [ ] Edit Comment
-- [ ] Delete Comment
-- [ ] isMine (Delete Comment)
+- [ x ] Edit Comment
+- [ x ] Delete Comment
+- [ x ] isMine (Delete Comment)
+
+## Refactor
+
+- [ x ] Mutation Responses
 
 ## Extras
 

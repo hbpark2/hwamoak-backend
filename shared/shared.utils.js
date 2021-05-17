@@ -22,6 +22,7 @@ export const uploadToS3 = async (file, userId, folderName) => {
   return Location;
 };
 
+//AWS에서 사진 삭제
 export const deleteInS3 = async (fileUrl) => {
   const Key = fileUrl.replace(
     "https://instaclone-uploads-jake.s3.amazonaws.com/",
@@ -32,5 +33,3 @@ export const deleteInS3 = async (fileUrl) => {
     Key,
   }).promise();
 };
-
-0;

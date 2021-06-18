@@ -35,7 +35,6 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "fs-capacitor": "^6.2.0"
-
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",

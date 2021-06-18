@@ -1,12 +1,16 @@
 import { gql } from "apollo-server-express";
 
 export default gql`
-  type Photo {
+  type Plants {
     id: Int!
     user: User!
-    file: String!
+    images: [PlantsImage]
+    title: String!
     caption: String!
-    likes: Int
+    sunlight: Int
+    temperature: String
+    water: String
+    plantLikes: Int
     commentNumber: Int!
     comments: [Comment]
     hashtags: [Hashtag]
@@ -19,15 +23,23 @@ export default gql`
   type Hashtag {
     id: Int!
     hashtag: String!
-    photos(lastId: Int): [Photo]
-    totalPhotos: Int!
+    plants(lastId: Int): [Plants]
+    totalPlants: Int!
     createdAt: String!
     updatedAt: String!
   }
 
-  type Like {
+  type PlantLike {
     id: Int!
-    photo: Photo!
+    plants: Plants!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type PlantsImage {
+    id: Int!
+    file: String!
+    plants: Plants!
     createdAt: String!
     updatedAt: String!
   }

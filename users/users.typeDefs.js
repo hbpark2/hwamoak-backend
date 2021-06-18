@@ -2,7 +2,7 @@ import { gql } from "apollo-server";
 
 export default gql`
   type User {
-    id: String!
+    id: Int!
     firstName: String!
     lastName: String
     username: String!
@@ -18,5 +18,13 @@ export default gql`
     totalFollowers: Int!
     isMe: Boolean!
     isFollowing: Boolean!
+  }
+
+  type UserData {
+    id: Int!
+    space: String
+    PlantsUserLike: [Plants]
+    createdAt: String!
+    updatedAt: String!
   }
 `;

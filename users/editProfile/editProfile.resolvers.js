@@ -12,6 +12,7 @@ const resolverFn = async (
   let avatarUrl = null;
   if (avatar) {
     avatarUrl = await uploadToS3(avatar, loggedInUser.id, "avatars");
+
     // //avatar에서 filename, createReadStream 호출
     // const { filename, createReadStream } = await avatar;
     // console.log(filename);

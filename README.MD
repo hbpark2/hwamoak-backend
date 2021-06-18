@@ -1,6 +1,6 @@
-# Instaclone
+# Hwamoak
 
-Instaclone Backend,
+Hwamoak Backend,
 
 ## User
 
@@ -26,7 +26,21 @@ Instaclone Backend,
 - [ x ] See Photo Likes User
 - [ x ] See Photo Comments
 - [ x ] See Feed
+- [ x ] Upload Photo
 - [ x ] isMine (Delete Photo)
+
+## Plants
+
+- [ x ] See Plant
+- [ x ] See Plants Feed
+- [ x ] ToggleLike Plants
+- [ x ] Search Plants
+- [ x ] See Hashtags
+- [ x ] delete Plant
+- [ ] Edit Plants
+- [ ] See Plant Likes User
+- [ ] See Plant Comments
+- [ ] Toggle MyPlants
 
 ## Comments
 

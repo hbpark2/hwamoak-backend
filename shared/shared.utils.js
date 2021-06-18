@@ -12,7 +12,7 @@ export const uploadToS3 = async (file, userId, folderName) => {
   const objectName = `${folderName}/${userId}-${Date.now()}-${filename}`;
   const { Location } = await new AWS.S3()
     .upload({
-      Bucket: "instaclone-uploads-jake",
+      Bucket: "hwamoak",
       Key: objectName,
       ACL: "public-read",
       Body: readStream,
@@ -24,10 +24,7 @@ export const uploadToS3 = async (file, userId, folderName) => {
 
 //AWS에서 사진 삭제
 export const deleteInS3 = async (fileUrl) => {
-  const Key = fileUrl.replace(
-    "https://instaclone-uploads-jake.s3.amazonaws.com/",
-    ""
-  );
+  const Key = fileUrl.replace("https://hwamoak.s3.amazonaws.com/", "");
   await S3.deleteObject({
     Bucket,
     Key,

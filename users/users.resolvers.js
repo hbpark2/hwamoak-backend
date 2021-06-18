@@ -47,7 +47,7 @@ export default {
     },
     photos: ({ id }, { lastId }) =>
       client.user.findUnique({ where: { id } }).photos({
-        take: 5,
+        take: 9,
         skip: lastId ? 1 : 0,
         ...(lastId && { cursor: { id: lastId } }),
       }),

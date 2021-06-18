@@ -11,24 +11,34 @@ generator client {
 }
 
 model User {
-    id        Int       @id @default(autoincrement())
-    firstName String
-    lastName  String?
-    username  String    @unique
-    email     String    @unique
-    password  String
-    bio       String?
-    avatar    String?
-    photos    Photo[]
-    likes     Like[]
-    followers User[]    @relation("FollowRelation", references: [id])
-    following User[]    @relation("FollowRelation", references: [id])
-    comments  Comment[]
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    Room      Room[]
+    id         Int         @id @default(autoincrement())
+    firstName  String
+    lastName   String?
+    username   String      @unique
+    email      String      @unique
+    password   String
+    bio        String?
+    avatar     String?
+    photos     Photo[]
+    likes      Like[]
+    plantLikes PlantLike[]
+    followers  User[]      @relation("FollowRelation", references: [id])
+    following  User[]      @relation("FollowRelation", references: [id])
+    comments   Comment[]
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
+    Room       Room[]
+    Message    Message[]
+    Plants     Plants[]
+    UserData   UserData[]
+}
 
-    Message Message[]
+model UserData {
+    id             Int      @id @default(autoincrement())
+    space          String?
+    PlantsUserLike Plants[]
+    user           User     @relation(fields: [userId], references: [id])
+    userId         Int
 }
 
 model Photo {
@@ -50,6 +60,7 @@ model Hashtag {
     photos    Photo[]
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    plants    Plants[]
 }
 
 model Like {
@@ -73,6 +84,8 @@ model Comment {
     payload   String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    Plants    Plants?  @relation(fields: [plantsId], references: [id])
+    plantsId  Int?
 }
 
 model Room {
@@ -93,4 +106,44 @@ model Message {
     read      Boolean  @default(false)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+model Plants {
+    id          Int           @id @default(autoincrement())
+    user        User          @relation(fields: [userId], references: [id])
+    userId      Int
+    images      PlantsImage[]
+    title       String
+    caption     String?
+    sunlight    Int?
+    temperature String?
+    water       String?
+    comments    Comment[]
+    hashtags    Hashtag[]
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+    UserData    UserData?     @relation(fields: [userDataId], references: [id])
+    userDataId  Int?
+    plantLikes  PlantLike[]
+}
+
+model PlantsImage {
+    id        Int      @id @default(autoincrement())
+    file      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    plants    Plants?  @relation(fields: [plantsId], references: [id])
+    plantsId  Int?
+}
+
+model PlantLike {
+    id        Int      @id @default(autoincrement())
+    plants    Plants   @relation(fields: [plantsId], references: [id])
+    user      User     @relation(fields: [userId], references: [id])
+    userId    Int
+    plantsId  Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([plantsId, userId])
 }

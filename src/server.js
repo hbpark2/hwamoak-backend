@@ -11,6 +11,7 @@ const PORT = process.env.PORT;
 const apollo = new ApolloServer({
   typeDefs,
   resolvers,
+  //FIXME:  실제 개발상태에서는 playground, introspection false 로 전환
   playground: true,
   introspection: true,
   uploads: false, // 추가

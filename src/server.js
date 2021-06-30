@@ -19,6 +19,7 @@ const apollo = new ApolloServer({
     if (ctx.req) {
       return {
         loggedInUser: await getUser(ctx.req.headers.token),
+        headers: ctx.req.headers,
       };
     } else {
       const {

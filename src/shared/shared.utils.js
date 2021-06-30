@@ -1,4 +1,7 @@
+import { BlobServiceClient } from "@azure/storage-blob";
+import azure from "azure-storage";
 import AWS from "aws-sdk";
+import { createWriteStream } from "fs";
 AWS.config.update({
   credentials: {
     accessKeyId: process.env.AWS_KEY,
@@ -29,4 +32,34 @@ export const deleteInS3 = async (fileUrl) => {
     Bucket,
     Key,
   }).promise();
+};
+
+const blobService = azure.createBlobService(process.env.AZURE_STORAGE_KEY);
+
+export const UploadToAzure = async (file, userId, folderName, headers) => {
+  // const containerClient = blobServiceClient.getContainerClient("hwamoak");
+
+  const { createReadStream, filename, mimetype } = await file;
+
+  const objectName = `${userId}-${Date.now()}-${filename}`;
+
+  let streamSize = parseInt(headers["content-length"]);
+
+  const fileStream = createReadStream();
+
+  blobService.createBlockBlobFromStream(
+    folderName,
+    objectName,
+    fileStream,
+    streamSize,
+    (error, result, response) => {
+      if (!error) {
+        console.log("result : ", result);
+      }
+    }
+  );
+
+  const fileURL = `${process.env.AZURE_IMAGE_URL}${folderName}/${objectName}`;
+
+  return fileURL;
 };

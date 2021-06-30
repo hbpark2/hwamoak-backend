@@ -11,6 +11,7 @@ export default {
         { images, title, caption, sunlight, temperature, water },
         { loggedInUser }
       ) => {
+        console.log(images);
         let hashtagObj = [];
         /// parse caption
         if (caption) {

@@ -38,7 +38,7 @@ export default {
       if (!loggedInUser) {
         return false;
       }
-      const ok = await client.like.findUnique({
+      const ok = await client.plantLike.findUnique({
         where: {
           plantsId_userId: {
             plantsId: id,

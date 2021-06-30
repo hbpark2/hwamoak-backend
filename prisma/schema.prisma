@@ -116,8 +116,8 @@ model Plants {
     title       String
     caption     String?
     sunlight    Int?
-    temperature String?
-    water       String?
+    temperature Int?
+    water       Int?
     comments    Comment[]
     hashtags    Hashtag[]
     createdAt   DateTime      @default(now())

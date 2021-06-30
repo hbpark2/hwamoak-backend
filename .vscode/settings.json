@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/bd90cdd8-ac06-40ff-94a3-c3de0387e003/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/hwamoak-backend",
+  "appService.deploySubpath": "."
+}

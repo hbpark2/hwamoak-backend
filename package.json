@@ -22,11 +22,13 @@
   },
   "homepage": "https://github.com/hbpark2/instaclone-backend#readme",
   "dependencies": {
+    "@azure/storage-blob": "^12.6.0",
     "@babel/cli": "^7.14.5",
     "@prisma/client": "^2.22.0",
     "apollo-server": "^2.24.0",
     "apollo-server-express": "^2.24.0",
     "aws-sdk": "^2.907.0",
+    "azure-storage": "^2.10.4",
     "bcrypt": "^5.0.1",
     "dotenv": "^9.0.2",
     "fs-capacitor": "^6.2.0",

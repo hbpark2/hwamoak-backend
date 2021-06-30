@@ -1,18 +1,26 @@
 import client from "../../client";
-import { uploadToS3 } from "../../shared/shared.utils";
+import { UploadToAzure, uploadToS3 } from "../../shared/shared.utils";
 import { protectedResolver } from "../../users/users.utils";
 import { processHashtags } from "../photos.utils";
 
 export default {
   Mutation: {
     uploadPhoto: protectedResolver(
-      async (_, { file, caption }, { loggedInUser }) => {
+      async (_, { file, caption }, { loggedInUser, headers }) => {
         let hashtagObj = [];
         /// parse caption
         if (caption) {
           hashtagObj = processHashtags(caption);
         }
-        const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
+        // console.log("headers : ", headers["content-length"]);
+        // const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
+        const fileUrl = await UploadToAzure(
+          file,
+          loggedInUser.id,
+          "uploads",
+          headers
+        );
+
         // get or create Hashtags
         return client.photo.create({
           data: {

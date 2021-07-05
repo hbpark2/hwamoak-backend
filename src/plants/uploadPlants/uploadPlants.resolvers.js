@@ -39,20 +39,14 @@ export default {
         });
 
         for (let i = 0; i < images.length; i++) {
-          const fileUrl = await uploadToS3(
-            images[i],
-            loggedInUser.id,
-            "plants"
-          );
           await client.plantsImage.create({
             data: {
-              file: fileUrl,
+              file: images[i],
               plantsId: plantsData.id,
             },
           });
         }
 
-        console.log(plantsData);
         return plantsData;
       }
     ),

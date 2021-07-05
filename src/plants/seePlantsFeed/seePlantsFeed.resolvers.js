@@ -7,6 +7,7 @@ export default {
       client.plants.findMany({
         orderBy: {
           createdAt: "desc",
+          // plantLikes: "desc",
         },
         take: 9,
         skip: lastId ? 1 : 0,

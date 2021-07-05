@@ -6,7 +6,11 @@ import { uploadToS3 } from "../../shared/shared.utils";
 export default {
   Mutation: {
     editPlant: protectedResolver(
-      async (_, { id, images, title, caption }, { loggedInUser }) => {
+      async (
+        _,
+        { id, images, title, caption, water, sunlight, temperature },
+        { loggedInUser }
+      ) => {
         const oldPlant = await client.plants.findFirst({
           where: {
             id,
@@ -39,15 +43,11 @@ export default {
           });
 
           // 2. update new plantsImage
+
           for (let i = 0; i < images.length; i++) {
-            const fileUrl = await uploadToS3(
-              images[i],
-              loggedInUser.id,
-              "plants"
-            );
             await client.plantsImage.create({
               data: {
-                file: fileUrl,
+                file: images[i],
                 plantsId: id,
               },
             });
@@ -57,7 +57,11 @@ export default {
         await client.plants.update({
           where: { id },
           data: {
+            title,
             caption,
+            water,
+            sunlight,
+            temperature,
             hashtags: {
               disconnect: oldPlant.hashtags,
               connectOrCreate: processHashtags(caption),

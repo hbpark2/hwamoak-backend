@@ -3,13 +3,10 @@ import { protectedResolver } from "../../users/users.utils";
 
 export default {
   Mutation: {
-    deletePlantImage: protectedResolver(async (_, { id }, { loggedInUser }) => {
+    deletePlantImage: protectedResolver(async (_, { id }) => {
       const plants = await client.plantsImage.findFirst({
         where: {
           id,
-          plants: {
-            userId: loggedInUser.id,
-          },
         },
       });
 

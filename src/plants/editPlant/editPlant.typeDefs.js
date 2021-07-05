@@ -4,9 +4,12 @@ export default gql`
   type Mutation {
     editPlant(
       id: Int!
-      images: [Upload]
+      images: [String]
       title: String
       caption: String
+      water: Int
+      sunlight: Int
+      temperature: Int
     ): MutationResponse!
   }
 `;

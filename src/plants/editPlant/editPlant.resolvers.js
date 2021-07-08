@@ -8,7 +8,16 @@ export default {
     editPlant: protectedResolver(
       async (
         _,
-        { id, images, title, caption, water, sunlight, temperature },
+        {
+          id,
+          images,
+          title,
+          caption,
+          water,
+          sunlight,
+          temperatureMax,
+          temperatureMin,
+        },
         { loggedInUser }
       ) => {
         const oldPlant = await client.plants.findFirst({
@@ -61,7 +70,8 @@ export default {
             caption,
             water,
             sunlight,
-            temperature,
+            temperatureMax,
+            temperatureMin,
             hashtags: {
               disconnect: oldPlant.hashtags,
               connectOrCreate: processHashtags(caption),

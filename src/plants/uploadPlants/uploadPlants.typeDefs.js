@@ -7,7 +7,8 @@ export default gql`
       title: String!
       caption: String
       sunlight: Int
-      temperature: Int
+      temperatureMax: Int
+      temperatureMin: Int
       water: Int
     ): Plants
   }

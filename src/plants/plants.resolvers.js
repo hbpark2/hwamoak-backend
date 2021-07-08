@@ -21,6 +21,7 @@ export default {
         },
       }),
     plantLikes: ({ id }) => client.plantLike.count({ where: { plantsId: id } }),
+
     commentNumber: ({ id }) =>
       client.comment.count({ where: { plantsId: id } }),
     comments: ({ id }) =>

@@ -16,17 +16,29 @@ export default {
           ok: false,
           error: "Plant doesn't Exist",
         };
+      } else if (!plants && plants.userId !== loggedInUser.id) {
+        return {
+          ok: false,
+          error: "Not Authorized",
+        };
+      } else {
+        await client.plantsImage.deleteMany({
+          where: {
+            plantsId: id,
+          },
+        });
+
+        await client.plantLike.deleteMany({
+          where: {
+            plantsId: id,
+          },
+        });
+
+        await client.plants.delete({
+          where: { id },
+        });
       }
 
-      await client.plantsImage.deleteMany({
-        where: {
-          plantsId: id,
-        },
-      });
-
-      await client.plants.delete({
-        where: { id },
-      });
       return {
         ok: true,
       };

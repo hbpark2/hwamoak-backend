@@ -8,8 +8,9 @@ export default gql`
     title: String!
     caption: String!
     sunlight: Int
-    temperature: Int
     water: Int
+    temperatureMax: Int
+    temperatureMin: Int
     plantLikes: Int
     commentNumber: Int!
     comments: [Comment]

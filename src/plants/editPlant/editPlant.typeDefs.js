@@ -9,7 +9,8 @@ export default gql`
       caption: String
       water: Int
       sunlight: Int
-      temperature: Int
+      temperatureMax: Int
+      temperatureMin: Int
     ): MutationResponse!
   }
 `;

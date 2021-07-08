@@ -7,7 +7,8 @@ datasource db {
 }
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["orderByRelation"]
 }
 
 model User {
@@ -109,22 +110,23 @@ model Message {
 }
 
 model Plants {
-    id          Int           @id @default(autoincrement())
-    user        User          @relation(fields: [userId], references: [id])
-    userId      Int
-    images      PlantsImage[]
-    title       String
-    caption     String?
-    sunlight    Int?
-    temperature Int?
-    water       Int?
-    comments    Comment[]
-    hashtags    Hashtag[]
-    createdAt   DateTime      @default(now())
-    updatedAt   DateTime      @updatedAt
-    UserData    UserData?     @relation(fields: [userDataId], references: [id])
-    userDataId  Int?
-    plantLikes  PlantLike[]
+    id             Int           @id @default(autoincrement())
+    user           User          @relation(fields: [userId], references: [id])
+    userId         Int
+    images         PlantsImage[]
+    title          String
+    caption        String?
+    water          Int?
+    sunlight       Int?
+    temperatureMax Int?
+    temperatureMin Int?
+    comments       Comment[]
+    hashtags       Hashtag[]
+    createdAt      DateTime      @default(now())
+    updatedAt      DateTime      @updatedAt
+    UserData       UserData?     @relation(fields: [userDataId], references: [id])
+    userDataId     Int?
+    plantLikes     PlantLike[]
 }
 
 model PlantsImage {

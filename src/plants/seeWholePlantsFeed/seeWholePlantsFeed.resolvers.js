@@ -3,17 +3,14 @@ import { protectedResolver } from "../../users/users.utils";
 
 export default {
   Query: {
-    seePlantsFeed: protectedResolver(
+    seeWholePlantsFeed: protectedResolver(
       async (_, { lastId }, { loggedInUser }) => {
         const plant = await client.plants.findMany({
           include: {
             plantLikes: true,
           },
-          where: {
-            plantLikes: { some: { plantsId: { gte: 0 } } },
-          },
           orderBy: {
-            plantLikes: { count: "desc" },
+            createdAt: "desc",
           },
           take: 9,
           skip: lastId ? 1 : 0,

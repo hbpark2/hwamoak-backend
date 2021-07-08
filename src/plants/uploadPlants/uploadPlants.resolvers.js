@@ -8,7 +8,15 @@ export default {
     uploadPlants: protectedResolver(
       async (
         _,
-        { images, title, caption, sunlight, temperature, water },
+        {
+          images,
+          title,
+          caption,
+          sunlight,
+          temperatureMin,
+          temperatureMax,
+          water,
+        },
         { loggedInUser }
       ) => {
         console.log(images);
@@ -23,7 +31,8 @@ export default {
             title,
             caption,
             sunlight,
-            temperature,
+            temperatureMax,
+            temperatureMin,
             water,
             user: {
               connect: {

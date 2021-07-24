@@ -10,6 +10,14 @@ export default gql`
       temperatureMax: Int
       temperatureMin: Int
       water: Int
+      plantDivision: String
+      plantClass: String
+      plantOrder: String
+      plantFamily: String
+      plantGenus: String
+      plantSpecies: String
+      plantHome: String
+      plantHabitat: String
     ): Plants
   }
 `;

@@ -16,6 +16,14 @@ export default {
           temperatureMin,
           temperatureMax,
           water,
+          plantDivision,
+          plantClass,
+          plantOrder,
+          plantFamily,
+          plantGenus,
+          plantSpecies,
+          plantHome,
+          plantHabitat,
         },
         { loggedInUser }
       ) => {
@@ -34,6 +42,14 @@ export default {
             temperatureMax,
             temperatureMin,
             water,
+            plantDivision,
+            plantClass,
+            plantOrder,
+            plantFamily,
+            plantGenus,
+            plantSpecies,
+            plantHome,
+            plantHabitat,
             user: {
               connect: {
                 id: loggedInUser.id,

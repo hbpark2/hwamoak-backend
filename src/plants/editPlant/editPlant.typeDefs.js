@@ -11,6 +11,14 @@ export default gql`
       sunlight: Int
       temperatureMax: Int
       temperatureMin: Int
+      plantDivision: String
+      plantClass: String
+      plantOrder: String
+      plantFamily: String
+      plantGenus: String
+      plantSpecies: String
+      plantHome: String
+      plantHabitat: String
     ): MutationResponse!
   }
 `;

@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hbpark2/instaclone-backend.git"
+    "url": "git+https://github.com/hbpark2/hwamoak-backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hbpark2/instaclone-backend/issues"
+    "url": "https://github.com/hbpark2/hwamoak-backend/issues"
   },
-  "homepage": "https://github.com/hbpark2/instaclone-backend#readme",
+  "homepage": "https://github.com/hbpark2/hwamoak-backend#readme",
   "dependencies": {
     "@azure/storage-blob": "^12.6.0",
     "@babel/cli": "^7.14.5",

@@ -46,10 +46,17 @@ export default {
       return Boolean(exists);
     },
     photos: ({ id }, { lastId }) =>
-      client.user.findUnique({ where: { id } }).photos({
-        take: 9,
-        skip: lastId ? 1 : 0,
-        ...(lastId && { cursor: { id: lastId } }),
-      }),
+      client.user
+        .findUnique({
+          where: { id },
+        })
+        .photos({
+          take: 9,
+          skip: lastId ? 1 : 0,
+          ...(lastId && { cursor: { id: lastId } }),
+          orderBy: {
+            createdAt: "desc",
+          },
+        }),
   },
 };

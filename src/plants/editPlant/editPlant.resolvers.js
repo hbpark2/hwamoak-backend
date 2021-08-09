@@ -31,7 +31,7 @@ export default {
         const oldPlant = await client.plants.findFirst({
           where: {
             id,
-            userId: loggedInUser.id,
+            // userId: loggedInUser.id,
           },
           include: {
             hashtags: {
@@ -44,7 +44,7 @@ export default {
         if (!oldPlant) {
           return {
             ok: false,
-            error: "User not found.",
+            error: "Not Authorized",
           };
         }
 

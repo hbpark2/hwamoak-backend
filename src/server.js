@@ -57,9 +57,9 @@ httpServer.listen(PORT, () => {
 });
 
 // app.listen({ port: PORT }, () => {
-//   console.log(` 🌗  Server is running on http://localhost:${PORT}/ 🌗  `);
+//console.log(` 🌱🌹  "화목" Server is running on HEROKU 🌿🌹 `);
 // });
 
 // .then(() =>
-//   console.log(` 🌗  Server is running on http://localhost:${PORT}/`)
+//console.log(` 🌱🌹  "화목" Server is running on HEROKU 🌿🌹 `);
 // );

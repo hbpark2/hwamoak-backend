@@ -27,7 +27,6 @@ export default {
         },
         { loggedInUser }
       ) => {
-        console.log(images, success);
         let hashtagObj = [];
         /// parse caption
         if (caption) {

@@ -12,7 +12,9 @@ export default {
           orderBy: {
             createdAt: "desc",
           },
+
           // take: 9,
+
           skip: lastId ? 1 : 0,
           ...(lastId && { cursor: { id: lastId } }),
         });

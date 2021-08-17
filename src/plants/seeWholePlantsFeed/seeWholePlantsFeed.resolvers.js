@@ -12,13 +12,11 @@ export default {
           orderBy: {
             createdAt: "desc",
           },
-
-          // take: 9,
-
-          skip: lastId ? 1 : 0,
-          ...(lastId && { cursor: { id: lastId } }),
+          // take: 3,
+          // skip: lastId ? lastId : 0,
+          // skip: lastId ? 1 : 0,
+          // ...(lastId && { cursor: { id: lastId } }),
         });
-
         return plant;
       }
     ),

@@ -35,7 +35,7 @@ export default {
             },
           },
         });
-        console.log(photo);
+        // console.log(photo);
         return {
           ok: true,
         };

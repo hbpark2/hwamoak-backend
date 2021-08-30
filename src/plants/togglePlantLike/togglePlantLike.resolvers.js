@@ -4,7 +4,7 @@ import { protectedResolver } from "../../users/users.utils";
 export default {
   Mutation: {
     togglePlantLike: protectedResolver(async (_, { id }, { loggedInUser }) => {
-      console.log(id);
+      // console.log(id);
       // 1. If it does not meet the criteria it will return false
       const plants = await client.plants.findUnique({
         where: {

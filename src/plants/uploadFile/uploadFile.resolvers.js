@@ -5,7 +5,7 @@ import { protectedResolver } from "../../users/users.utils";
 export default {
   Mutation: {
     uploadFile: protectedResolver(async (_, { images }, { loggedInUser }) => {
-      console.log(images);
+      // console.log(images);
 
       let fileUrl;
       let plantImageData;

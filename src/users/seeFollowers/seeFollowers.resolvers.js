@@ -7,7 +7,7 @@ export default {
         where: { username },
         select: { id: true },
       });
-      console.log(ok);
+      // console.log(ok);
       if (!ok) {
         return {
           ok: false,

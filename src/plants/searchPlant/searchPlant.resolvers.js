@@ -5,22 +5,27 @@ export default {
     searchPlant: async (_, { keyword, lastId }) => {
       console.log(keyword);
 
-      if (keyword.length < 2) {
-        return {
-          ok: false,
-          error: "2글자 이상 입력하세요.",
-        };
-      }
+      // if (keyword.length < 2) {
+      //   return {
+      //     ok: false,
+      //     error: "2글자 이상 입력하세요.",
+      //   };
+      // }
       const plants = await client.plants.findMany({
         where: {
-          caption: {
+          title: {
             contains: keyword,
           },
+        },
+        include: {
+          images: true,
         },
         take: 5,
         skip: lastId ? 1 : 0,
         ...(lastId && { cursor: { id: lastId } }),
       });
+
+      console.log(plants);
 
       const count = await client.plants.count({
         where: {

@@ -16,6 +16,7 @@ export default {
     //       createdAt: "asc",
     //     },
     //   }),
+
     messages: ({ id }) =>
       client.message.findMany({
         where: {
@@ -39,7 +40,7 @@ export default {
       });
     },
   },
-  
+
   Message: {
     user: ({ id }) => client.message.findUnique({ where: { id } }).user(),
     isMine: ({ userId }, _, { loggedInUser }) => userId === loggedInUser.id,

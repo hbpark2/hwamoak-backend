@@ -5,7 +5,7 @@ export default {
   Query: {
     seeRoom: protectedResolver(async (_, { id, userId }, { loggedInUser }) => {
       if (id) {
-        return await client.room.findFirst({
+        const room = await client.room.findFirst({
           where: {
             id,
             users: {
@@ -15,6 +15,7 @@ export default {
             },
           },
         });
+        return room;
       } else {
         if (userId) {
           const user = await client.user.findUnique({

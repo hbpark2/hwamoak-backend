@@ -19,7 +19,6 @@ export default {
               users: true,
             },
           });
-          // console.log(oldRoom);
 
           await client.room.update({
             where: {

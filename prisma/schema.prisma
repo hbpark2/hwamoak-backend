@@ -166,8 +166,8 @@ model Notification {
     notificationType String
     photo            Photo?   @relation(fields: [photoId], references: [id])
     user             User?    @relation(fields: [userId], references: [id])
-    photoId          Int
+    photoId          Int?
+    userId           Int?
     createdAt        DateTime @default(now())
     updatedAt        DateTime @updatedAt
-    userId           Int
 }

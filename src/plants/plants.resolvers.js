@@ -14,6 +14,7 @@ export default {
           },
         },
       }),
+      
     images: ({ id }) =>
       client.plantsImage.findMany({
         where: {

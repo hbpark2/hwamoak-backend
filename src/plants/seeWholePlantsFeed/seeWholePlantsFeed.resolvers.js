@@ -5,21 +5,18 @@ export default {
   Query: {
     seeWholePlantsFeed: protectedResolver(
       async (_, { offset }, { loggedInUser }) => {
-        console.log(offset);
-        const plant = await client.plants.findMany({
+        const plants = client.plants.findMany({
+          take: 9,
+          skip: offset || 0,
           include: {
             plantLikes: true,
           },
           orderBy: {
             createdAt: "desc",
           },
-          take: 9,
-          skip: offset ? offset : 0,
-          // skip: lastId ? lastId : 0,
-          // skip: lastId ? 1 : 0,
-          // ...(lastId && { cursor: { id: lastId } }),
         });
-        return plant;
+
+        return plants;
       }
     ),
   },

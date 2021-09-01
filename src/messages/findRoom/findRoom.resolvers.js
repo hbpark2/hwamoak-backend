@@ -20,8 +20,6 @@ export default {
           },
         });
 
-        // console.log(roomData);
-
         if (roomData !== null) {
           const exist = roomData?.users?.some((item) => {
             if (item?.id === loggedInUser.id) {

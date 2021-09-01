@@ -13,26 +13,27 @@ generator client {
 }
 
 model User {
-    id         Int         @id @default(autoincrement())
-    firstName  String
-    lastName   String?
-    username   String      @unique
-    email      String      @unique
-    password   String
-    bio        String?
-    avatar     String?
-    photos     Photo[]
-    likes      Like[]
-    plantLikes PlantLike[]
-    followers  User[]      @relation("FollowRelation", references: [id])
-    following  User[]      @relation("FollowRelation", references: [id])
-    comments   Comment[]
-    createdAt  DateTime    @default(now())
-    updatedAt  DateTime    @updatedAt
-    Room       Room[]
-    Message    Message[]
-    Plants     Plants[]
-    UserData   UserData[]
+    id           Int            @id @default(autoincrement())
+    firstName    String
+    lastName     String?
+    username     String         @unique
+    email        String         @unique
+    password     String
+    bio          String?
+    avatar       String?
+    photos       Photo[]
+    likes        Like[]
+    plantLikes   PlantLike[]
+    followers    User[]         @relation("FollowRelation", references: [id])
+    following    User[]         @relation("FollowRelation", references: [id])
+    comments     Comment[]
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
+    Room         Room[]
+    Message      Message[]
+    Plants       Plants[]
+    UserData     UserData[]
+    Notification Notification[]
 }
 
 model UserData {
@@ -44,16 +45,17 @@ model UserData {
 }
 
 model Photo {
-    id        Int       @id @default(autoincrement())
-    user      User      @relation(fields: [userId], references: [id])
-    userId    Int
-    file      String
-    caption   String?
-    hashtags  Hashtag[]
-    likes     Like[]
-    comments  Comment[]
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+    id           Int            @id @default(autoincrement())
+    user         User           @relation(fields: [userId], references: [id])
+    userId       Int
+    file         String
+    caption      String?
+    hashtags     Hashtag[]
+    likes        Like[]
+    comments     Comment[]
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
+    Notification Notification[]
 }
 
 model Hashtag {
@@ -157,4 +159,15 @@ model PlantLike {
     updatedAt DateTime @updatedAt
 
     @@unique([plantsId, userId])
+}
+
+model Notification {
+    id               Int      @id @default(autoincrement())
+    notificationType String
+    photo            Photo?   @relation(fields: [photoId], references: [id])
+    user             User?    @relation(fields: [userId], references: [id])
+    photoId          Int
+    createdAt        DateTime @default(now())
+    updatedAt        DateTime @updatedAt
+    userId           Int
 }

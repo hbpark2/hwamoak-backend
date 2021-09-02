@@ -4,9 +4,9 @@ import client from "../../client";
 
 export default {
   Mutation: {
-    login: async (_, { username, password }) => {
+    login: async (_, { email, password }) => {
       // find user with args.username
-      const user = await client.user.findFirst({ where: { username } });
+      const user = await client.user.findFirst({ where: { email } });
       if (!user) {
         return {
           ok: false,

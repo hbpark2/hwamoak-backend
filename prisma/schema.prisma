@@ -116,6 +116,7 @@ model Plants {
     id             Int           @id @default(autoincrement())
     user           User          @relation(fields: [userId], references: [id])
     userId         Int
+    category       String?
     images         PlantsImage[]
     title          String
     caption        String?
@@ -163,7 +164,7 @@ model PlantLike {
 
 model Notification {
     id               Int      @id @default(autoincrement())
-    notificationType String
+    notificationType String?
     photo            Photo?   @relation(fields: [photoId], references: [id])
     user             User?    @relation(fields: [userId], references: [id])
     photoId          Int?

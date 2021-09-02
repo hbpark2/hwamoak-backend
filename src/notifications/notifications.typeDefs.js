@@ -3,7 +3,7 @@ import { gql } from "apollo-server";
 export default gql`
   type Notification {
     id: Int!
-    notificationType: String!
+    notificationType: String
     photo: Photo
     user: User
     photoId: Int

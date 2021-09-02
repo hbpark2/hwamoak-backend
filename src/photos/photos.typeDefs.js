@@ -14,6 +14,7 @@ export default gql`
     updatedAt: String!
     isMine: Boolean!
     isLiked: Boolean!
+    Notification: [Notification]
   }
 
   type Hashtag {

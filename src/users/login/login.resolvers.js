@@ -13,7 +13,7 @@ export default {
           error: "User not found.",
         };
       }
-      //console.log('aa')
+
       // check password with args.password
       const passwordOk = await bcrypt.compare(password, user.password);
       if (!passwordOk) {

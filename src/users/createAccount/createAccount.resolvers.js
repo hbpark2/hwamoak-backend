@@ -21,7 +21,7 @@ export default {
             ],
           },
         });
-
+        //
         // existingUser 가 있을 때  error
         if (existingUser) {
           throw new Error("This username/password is already taken.");

@@ -8,6 +8,9 @@ export default {
       return client.photo.findMany({
         take: 3,
         skip: offset || 0,
+        orderBy: {
+          createdAt: "desc",
+        },
         // where: {
         //   OR: [
         //     {
@@ -24,9 +27,6 @@ export default {
         //     },
         //   ],
         // },
-        orderBy: {
-          createdAt: "desc",
-        },
       });
     }),
   },

@@ -8,6 +8,9 @@ export default {
         where: {
           id: loggedInUser.id,
         },
+        include: {
+          NotificationsReceived: true,
+        },
       })
     ),
   },

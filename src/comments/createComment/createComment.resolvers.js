@@ -5,20 +5,42 @@ export default {
   Mutation: {
     createComment: protectedResolver(
       async (_, { photoId, payload }, { loggedInUser }) => {
-        const ok = await client.photo.findUnique({
+        const photo = await client.photo.findUnique({
           where: {
             id: photoId,
           },
-          select: {
-            id: true,
-          },
         });
-        if (!ok) {
+        if (!photo) {
           return {
             ok: false,
             error: "Photo not found.",
           };
         }
+
+        // notification 생성
+        // if (photo.userId !== loggedInUser.id) {
+        //   await client.notification.create({
+        //     data: {
+        //       user: {
+        //         connect: {
+        //           id: photo.userId,
+        //         },
+        //       },
+        //       photo: {
+        //         connect: {
+        //           id: photoId,
+        //         },
+        //       },
+        //       sendUser: {
+        //         connect: {
+        //           id: loggedInUser.id,
+        //         },
+        //       },
+        //       notificationType: "comment",
+        //     },
+        //   });
+        // }
+
         const newComment = await client.comment.create({
           data: {
             payload,
@@ -34,6 +56,7 @@ export default {
             },
           },
         });
+
         return {
           ok: true,
           id: newComment.id,

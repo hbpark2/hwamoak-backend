@@ -3,6 +3,11 @@ import { protectedResolver } from "../users/users.utils";
 
 export default {
   Notification: {
-    // notificationType: ({ type }) => client.room.findUnique({ where: { type } }).users(),
+    // notificationType: ({ type }) =>
+    //   client.notification.findMany({
+    //     where: {
+    //       notificationType: type,
+    //     },
+    //   }),
   },
 };

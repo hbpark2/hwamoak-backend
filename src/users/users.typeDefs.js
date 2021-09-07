@@ -19,7 +19,8 @@ export default gql`
     isMe: Boolean!
     isFollowing: Boolean!
     room: [Room]
-    Notification: [Notification]
+    NotificationsReceived: [Notification]
+    NotificationsSent: [Notification]
   }
 
   type UserData {

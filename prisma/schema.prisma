@@ -69,28 +69,30 @@ model Hashtag {
 }
 
 model Like {
-    id        Int      @id @default(autoincrement())
-    photo     Photo    @relation(fields: [photoId], references: [id])
-    user      User     @relation(fields: [userId], references: [id])
-    photoId   Int
-    userId    Int
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id           Int            @id @default(autoincrement())
+    photo        Photo          @relation(fields: [photoId], references: [id])
+    user         User           @relation(fields: [userId], references: [id])
+    Notification Notification[]
+    photoId      Int
+    userId       Int
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
 
     @@unique([photoId, userId])
 }
 
 model Comment {
-    id        Int      @id @default(autoincrement())
-    user      User     @relation(fields: [userId], references: [id])
-    photo     Photo    @relation(fields: [photoId], references: [id])
-    userId    Int
-    photoId   Int
-    payload   String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    Plants    Plants?  @relation(fields: [plantsId], references: [id])
-    plantsId  Int?
+    id           Int            @id @default(autoincrement())
+    user         User           @relation(fields: [userId], references: [id])
+    photo        Photo          @relation(fields: [photoId], references: [id])
+    userId       Int
+    photoId      Int
+    payload      String
+    createdAt    DateTime       @default(now())
+    updatedAt    DateTime       @updatedAt
+    Plants       Plants?        @relation(fields: [plantsId], references: [id])
+    Notification Notification[]
+    plantsId     Int?
 }
 
 model Room {
@@ -169,6 +171,10 @@ model Notification {
     photo            Photo?   @relation(fields: [photoId], references: [id])
     user             User?    @relation("NotificationsReceived", fields: [userId], references: [id])
     sendUser         User?    @relation(name: "NotificationsSent", fields: [sendUserId], references: [id])
+    comment          Comment? @relation(fields: [commentId], references: [id])
+    like             Like?    @relation(fields: [likeId], references: [id])
+    likeId           Int?
+    commentId        Int?
     sendUserId       Int?
     photoId          Int?
     userId           Int?
@@ -176,5 +182,6 @@ model Notification {
     createdAt        DateTime @default(now())
     updatedAt        DateTime @updatedAt
 
-    @@unique([photoId, userId])
+    @@unique([photoId, likeId])
+    @@unique([photoId, commentId])
 }

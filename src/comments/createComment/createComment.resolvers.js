@@ -17,30 +17,6 @@ export default {
           };
         }
 
-        // notification 생성
-        // if (photo.userId !== loggedInUser.id) {
-        //   await client.notification.create({
-        //     data: {
-        //       user: {
-        //         connect: {
-        //           id: photo.userId,
-        //         },
-        //       },
-        //       photo: {
-        //         connect: {
-        //           id: photoId,
-        //         },
-        //       },
-        //       sendUser: {
-        //         connect: {
-        //           id: loggedInUser.id,
-        //         },
-        //       },
-        //       notificationType: "comment",
-        //     },
-        //   });
-        // }
-
         const newComment = await client.comment.create({
           data: {
             payload,
@@ -56,6 +32,35 @@ export default {
             },
           },
         });
+
+        // notification 생성
+        if (photo.userId !== loggedInUser.id) {
+          await client.notification.create({
+            data: {
+              comment: {
+                connect: {
+                  id: newComment.id,
+                },
+              },
+              photo: {
+                connect: {
+                  id: photoId,
+                },
+              },
+              user: {
+                connect: {
+                  id: photo.userId,
+                },
+              },
+              sendUser: {
+                connect: {
+                  id: loggedInUser.id,
+                },
+              },
+              notificationType: "comment",
+            },
+          });
+        }
 
         return {
           ok: true,

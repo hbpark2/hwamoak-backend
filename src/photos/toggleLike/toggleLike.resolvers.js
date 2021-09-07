@@ -25,20 +25,20 @@ export default {
         },
       };
 
-      const notificationWhere = {
-        photoId_userId: {
-          userId: photo.userId,
-          photoId: id,
-        },
-      };
+      // const notificationWhere = {
+      //   photoId_userId: {
+      //     userId: photo.userId,
+      //     photoId: id,
+      //   },
+      // };
 
       const like = await client.like.findUnique({
         where: likeWhere,
       });
 
-      const notification = await client.notification.findUnique({
-        where: notificationWhere,
-      });
+      // const notification = await client.notification.findUnique({
+      //   where: notificationWhere,
+      // });
 
       // 3. like이 존재하면 delete, 존재하지 않으면 create
       if (like) {
@@ -47,37 +47,13 @@ export default {
           where: likeWhere,
         });
         //notification 삭제
-        if (notification) {
-          await client.notification.delete({
-            where: notificationWhere,
-          });
-        }
+        // if (notification) {
+        //   await client.notification.delete({
+        //     where: notificationWhere,
+        //   });
+        // }
       } else {
-        // notification 생성
-        if (photo.userId !== loggedInUser.id) {
-          await client.notification.create({
-            data: {
-              user: {
-                connect: {
-                  id: photo.userId,
-                },
-              },
-              photo: {
-                connect: {
-                  id,
-                },
-              },
-              sendUser: {
-                connect: {
-                  id: loggedInUser.id,
-                },
-              },
-              notificationType: "like",
-            },
-          });
-        }
-
-        await client.like.create({
+        const likeObj = await client.like.create({
           data: {
             user: {
               connect: {
@@ -91,6 +67,35 @@ export default {
             },
           },
         });
+
+        // notification 생성
+        if (photo.userId !== loggedInUser.id) {
+          await client.notification.create({
+            data: {
+              like: {
+                connect: {
+                  id: likeObj.id,
+                },
+              },
+              photo: {
+                connect: {
+                  id,
+                },
+              },
+              user: {
+                connect: {
+                  id: photo.userId,
+                },
+              },
+              sendUser: {
+                connect: {
+                  id: loggedInUser.id,
+                },
+              },
+              notificationType: "like",
+            },
+          });
+        }
       }
 
       return {

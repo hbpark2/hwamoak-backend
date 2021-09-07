@@ -8,6 +8,10 @@ export default gql`
     photo: Photo
     user: User
     sendUser: User
+    comment: Comment
+    like: Like
+    likeId: Int
+    commentId: Int
     sendUserId: Int
     photoId: Int
     userId: Int

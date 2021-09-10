@@ -1,5 +1,5 @@
 import client from "../../client";
-import { UploadToAzure, uploadToS3 } from "../../shared/shared.utils";
+import { uploadToS3 } from "../../shared/shared.utils";
 import { protectedResolver } from "../../users/users.utils";
 import { processHashtags } from "../photos.utils";
 
@@ -46,19 +46,17 @@ import { processHashtags } from "../photos.utils";
 //   },
 // };
 
-
 export default {
   Mutation: {
     uploadPhoto: protectedResolver(
-      async (_, { file, caption }, { loggedInUser }) => {
+      async (_, { images, caption }, { loggedInUser }) => {
         let hashtagObj = [];
         if (caption) {
           hashtagObj = processHashtags(caption);
         }
-        const fileUrl = await uploadToS3(file, loggedInUser.id, "uploads");
-        return client.photo.create({
+
+        const photoData = await client.photo.create({
           data: {
-            file: fileUrl,
             caption,
             user: {
               connect: {
@@ -72,6 +70,19 @@ export default {
             }),
           },
         });
+
+        console.log(photoData);
+
+        for (let i = 0; i < images.length; i++) {
+          await client.photoImage.create({
+            data: {
+              file: images[i],
+              photoId: photoData.id,
+            },
+          });
+        }
+
+        return photoData;
       }
     ),
   },

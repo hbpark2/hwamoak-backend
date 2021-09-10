@@ -6,9 +6,9 @@ export default {
   Mutation: {
     uploadFile: protectedResolver(async (_, { images }, { loggedInUser }) => {
       // console.log(images);
-
       let fileUrl;
       let plantImageData;
+
       for (let i = 0; i < images.length; i++) {
         fileUrl = await uploadToS3(images[i], loggedInUser.id, "plants");
         plantImageData = await client.plantsImage.create({

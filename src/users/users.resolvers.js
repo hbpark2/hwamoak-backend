@@ -45,8 +45,8 @@ export default {
       });
       return Boolean(exists);
     },
-    photos: ({ id }, { lastId }) =>
-      client.user
+    photos: ({ id }, { lastId }) => {
+      return client.user
         .findUnique({
           where: { id },
         })
@@ -57,6 +57,10 @@ export default {
           orderBy: {
             createdAt: "desc",
           },
-        }),
+          include: {
+            images: true,
+          },
+        });
+    },
   },
 };

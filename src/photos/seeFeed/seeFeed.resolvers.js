@@ -5,9 +5,12 @@ export default {
   Query: {
     seeFeed: protectedResolver(async (_, { offset }, { loggedInUser }) => {
       // console.log(offset);
-      return client.photo.findMany({
+      const photos = await client.photo.findMany({
         take: 3,
         skip: offset || 0,
+        include: {
+          images: true,
+        },
         orderBy: {
           createdAt: "desc",
         },
@@ -28,6 +31,8 @@ export default {
         //   ],
         // },
       });
+
+      return photos;
     }),
   },
 };

@@ -14,6 +14,12 @@ export default {
           },
         },
       }),
+    images: ({ id }) =>
+      client.photoImage.findMany({
+        where: {
+          photoId: id,
+        },
+      }),
     likes: ({ id }) => client.like.count({ where: { photoId: id } }),
     commentNumber: ({ id }) => client.comment.count({ where: { photoId: id } }),
     comments: ({ id }) =>

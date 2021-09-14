@@ -11,6 +11,7 @@ export default {
         {
           id,
           images,
+          originalImages,
           title,
           caption,
           water,
@@ -61,10 +62,22 @@ export default {
 
           // 2. update new plantsImage
 
-          for (let i = 0; i < images.length; i++) {
+          for (let i = 0; i < originalImages.length; i++) {
             await client.plantsImage.create({
               data: {
-                file: images[i],
+                file: originalImages[i],
+                plantsId: id,
+              },
+            });
+          }
+
+          let fileUrl;
+          let plantImageData;
+          for (let i = 0; i < images.length; i++) {
+            fileUrl = await uploadToS3(images[i], loggedInUser.id, "plants");
+            plantImageData = await client.plantsImage.create({
+              data: {
+                file: fileUrl,
                 plantsId: id,
               },
             });

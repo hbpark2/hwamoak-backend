@@ -33,6 +33,9 @@ export default {
           hashtagObj = processHashtags(caption);
         }
 
+        let fileUrl;
+        let plantImageData;
+
         const plantsData = await client.plants.create({
           data: {
             title,
@@ -63,9 +66,10 @@ export default {
         });
 
         for (let i = 0; i < images.length; i++) {
-          await client.plantsImage.create({
+          fileUrl = await uploadToS3(images[i], loggedInUser.id, "plants");
+          plantImageData = await client.plantsImage.create({
             data: {
-              file: images[i],
+              file: fileUrl,
               plantsId: plantsData.id,
             },
           });

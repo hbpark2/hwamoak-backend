@@ -4,7 +4,8 @@ export default gql`
   type Mutation {
     editPlant(
       id: Int!
-      images: [String]
+      images: [Upload]
+      originalImages: [String]
       title: String
       caption: String
       water: Int

@@ -71,16 +71,26 @@ export default {
           },
         });
 
-        console.log(photoData);
-
+        let fileUrl;
+        let photoImageData;
         for (let i = 0; i < images.length; i++) {
-          await client.photoImage.create({
+          fileUrl = await uploadToS3(images[i], loggedInUser.id, "plants");
+          photoImageData = await client.photoImage.create({
             data: {
-              file: images[i],
+              file: fileUrl,
               photoId: photoData.id,
             },
           });
         }
+
+        // for (let i = 0; i < images.length; i++) {
+        //   await client.photoImage.create({
+        //     data: {
+        //       file: images[i],
+        //       photoId: photoData.id,
+        //     },
+        //   });
+        // }
 
         return photoData;
       }

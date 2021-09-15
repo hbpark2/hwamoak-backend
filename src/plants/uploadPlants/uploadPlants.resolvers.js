@@ -41,6 +41,9 @@ export default {
 
         const plantsData = await client.plants.create({
           data: {
+            category,
+            pot,
+            soil,
             title,
             caption,
             sunlight,

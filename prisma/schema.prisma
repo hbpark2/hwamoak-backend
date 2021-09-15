@@ -129,6 +129,8 @@ model Plants {
     user           User          @relation(fields: [userId], references: [id])
     userId         Int
     category       String?
+    pot            String?
+    soil           String?
     images         PlantsImage[]
     title          String
     caption        String?

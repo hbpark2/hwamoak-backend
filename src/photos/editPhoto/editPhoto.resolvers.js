@@ -25,7 +25,8 @@ export default {
             error: "User not found.",
           };
         }
-        const photo = await client.photo.update({
+
+        await client.photo.update({
           where: { id },
           data: {
             caption,

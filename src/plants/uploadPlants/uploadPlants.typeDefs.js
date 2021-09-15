@@ -3,6 +3,9 @@ import { gql } from "apollo-server";
 export default gql`
   type Mutation {
     uploadPlants(
+      category: String
+      pot: String
+      soil: String
       images: [Upload]!
       title: String!
       caption: String

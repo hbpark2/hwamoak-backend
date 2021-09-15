@@ -4,6 +4,9 @@ export default gql`
   type Plants {
     id: Int!
     user: User!
+    category: String!
+    pot: String!
+    soil: String!
     images: [PlantsImage]
     title: String!
     caption: String!

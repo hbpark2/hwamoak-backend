@@ -9,6 +9,9 @@ export default {
       async (
         _,
         {
+          category,
+          pot,
+          soil,
           images,
           title,
           caption,

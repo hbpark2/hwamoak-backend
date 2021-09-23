@@ -46,6 +46,14 @@ const apollo = new ApolloServer({
 });
 
 const app = express();
+
+app.router("/oauth", function (req, res, next) {
+  console.log("get");
+  console.log(req);
+  //console.log(req.query['code']);
+  res.send("access code 지급 완료");
+});
+
 app.use(graphqlUploadExpress()); // 추가
 app.use(logger("tiny"));
 apollo.applyMiddleware({ app });

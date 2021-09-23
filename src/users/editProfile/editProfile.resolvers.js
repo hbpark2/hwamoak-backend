@@ -33,6 +33,25 @@ const resolverFn = async (
   if (newPassword) {
     uglyPassword = await bcrypt.hash(newPassword, 10);
   }
+
+  const existingUsername = await client.user.findFirst({
+    where: {
+      OR: [
+        {
+          username,
+        },
+      ],
+    },
+  });
+
+  if (existingUsername) {
+    if (existingUsername.id !== loggedInUser.id)
+      return {
+        ok: false,
+        error: "동일한 아이디가 존재합니다.",
+      };
+  }
+
   const updatedUser = await client.user.update({
     where: {
       id: loggedInUser.id,
@@ -47,6 +66,7 @@ const resolverFn = async (
       ...(avatarUrl && { avatar: avatarUrl }),
     },
   });
+
   if (updatedUser.id) {
     return {
       ok: true,

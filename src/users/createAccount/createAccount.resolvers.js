@@ -9,24 +9,40 @@ export default {
     ) => {
       try {
         // check if usernam or email are already on DB
-        const existingUser = await client.user.findFirst({
+        const existingEmail = await client.user.findFirst({
           where: {
             OR: [
-              {
-                username,
-              },
               {
                 email,
               },
             ],
           },
         });
-        //
+        const existingUsername = await client.user.findFirst({
+          where: {
+            OR: [
+              {
+                username,
+              },
+            ],
+          },
+        });
+
         // existingUser 가 있을 때  error
-        if (existingUser) {
-          throw new Error("This username/password is already taken.");
+        if (existingEmail) {
+          // throw new Error("This username/password is already taken.");
+          return {
+            ok: false,
+            error: "동일한 이메일이 존재합니다.",
+          };
         }
 
+        if (existingUsername) {
+          return {
+            ok: false,
+            error: "동일한 아이디가 존재합니다.",
+          };
+        }
         // hash password
         const uglyPassword = await bcrypt.hash(password, 10);
 

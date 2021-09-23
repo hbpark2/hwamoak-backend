@@ -10,7 +10,7 @@ export default {
       if (!user) {
         return {
           ok: false,
-          error: "User not found.",
+          error: "일치하는 가입정보가 없습니다.",
         };
       }
 
@@ -19,7 +19,7 @@ export default {
       if (!passwordOk) {
         return {
           ok: false,
-          error: "Incorrect password.",
+          error: "비밀번호가 일치하지 않습니다.",
         };
       }
 

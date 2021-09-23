@@ -47,7 +47,7 @@ const apollo = new ApolloServer({
 
 const app = express();
 
-app.router("/oauth", function (req, res, next) {
+app.get("/oauth", function (req, res, next) {
   console.log("get");
   console.log(req);
   //console.log(req.query['code']);

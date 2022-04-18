@@ -16,6 +16,7 @@ const apollo = new ApolloServer({
   introspection: true,
   uploads: false, // 추가
   context: async (ctx) => {
+    // console.log(ctx.req.headers);
     if (ctx.req) {
       return {
         loggedInUser: await getUser(ctx.req.headers.token),
@@ -33,7 +34,6 @@ const apollo = new ApolloServer({
 
   subscriptions: {
     onConnect: async ({ token }) => {
-      // console.log(token);
       if (!token) {
         throw new Error("You can't listen.");
       }
